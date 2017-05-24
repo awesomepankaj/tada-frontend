@@ -285,9 +285,9 @@ export default class Institution extends React.Component {
             : <div>
                 {' '}
                 {hasClasses
-                  ? <p className="col-md-12 bg-info">
-                      <h5>
-                        <i className="fa fa-2x fa-info-circle" aria-hidden="true" />
+                  ? <p className="col-md-12 bg-info warn-message-cont">
+                      <i className="fa fa-2x fa-info-circle" aria-hidden="true" />
+                      <h5 className="warn-message">
                         You cannot
                         {' '}
                         <small>
