@@ -2,3 +2,11 @@
 	padding-top: 10 px;
 	background-color: brand-blue;
 }
+.loading-assessments {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading-assessments-spinner {
+  font-size: 35px;
+}
