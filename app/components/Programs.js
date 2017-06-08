@@ -459,7 +459,7 @@ export default class Programs extends React.Component {
     }
     var disabledstate = Object.keys(assessments).length > 0;
     return (
-      <div class="container">
+      <div className="container">
         <div className="row center-block">
 
           <div className="col-md-8 form-inline">
@@ -567,8 +567,9 @@ export default class Programs extends React.Component {
                   {assessmentsList}
                 </tbody>
               </table>
-            : <div className="loading-assessments">
-                <i className="fa fa-spinner fa-spin loading-assessments-spinner" />
+            : <div className="text-center">
+                <i className="fa fa-cog fa-spin fa-lg fa-fw" />
+                <span className="text-muted">Loading...</span>
               </div>}
 
         </div>

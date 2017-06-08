@@ -608,13 +608,4 @@ table.table-fixedwidth td, .table-fixedwidth th {
  margin: 0;
  margin-left: 10px;
 }
-​
-.loading-assessments {
- display: flex;
- align-items: center;
- justify-content: center;
-}
-.loading-assessments-spinner {
- font-size: 35px;
-}
 
