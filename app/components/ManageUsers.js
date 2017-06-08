@@ -6,6 +6,7 @@ import ResetPassword from './Modals/ResetPassword';
 import GenericDialog from './Modals/GenericDialog';
 import ConfirmDialog from './Modals/ConfirmDialog';
 import { roles as ROLES } from '../constants';
+
 export default class ManageUsers extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,6 @@ export default class ManageUsers extends React.Component {
       showDialog: false,
       dialogTitle: '',
       dialogMessage: '',
-      selectedPage: 1,
       isConfirmDlgOpen: false,
       isResetPasswordModalOpen: false,
     };
@@ -33,6 +33,7 @@ export default class ManageUsers extends React.Component {
   componentWillReceiveProps(nextProps) {
     // console.log("Received update in ManageUsers");
   }
+
   openEditUserModal(e) {
     var trId = $(e.currentTarget).closest('tr').prop('id');
     var selectedUser = this.props.usersById[trId];
@@ -62,6 +63,7 @@ export default class ManageUsers extends React.Component {
       isResetPasswordModalOpen: false,
     });
   }
+
   closeCreateUserModal() {
     this.setState({
       isCreateUserModalOpen: false,
@@ -81,6 +83,7 @@ export default class ManageUsers extends React.Component {
       isConfirmDlgOpen: false,
     });
   }
+
   openCreateUserModal() {
     this.setState({
       isCreateUserModalOpen: true,
@@ -161,9 +164,6 @@ export default class ManageUsers extends React.Component {
   handlePageClick(pageNum) {
     this.props.dispatch(actions.setCurrentPage(pageNum));
     this.props.dispatch(actions.fetchUsers(pageNum));
-    this.setState({
-      selectedPage: pageNum,
-    });
   }
 
   mapRoleToDisplayLabel(role) {
@@ -191,24 +191,25 @@ export default class ManageUsers extends React.Component {
         this.setState({
           showDialog: true,
           dialogTitle: 'Password reset failed',
-          dialogMessage: 'Password could not be reset for user ' +
-            user.username +
-            '. Please try again later!',
+          dialogMessage:
+            'Password could not be reset for user ' + user.username + '. Please try again later!',
         });
       });
   }
 
   render() {
+    let { usersByPage, userCount } = this.props;
     var users = this.props.usersById;
-    var usersByPage = this.props.usersByPage[this.state.selectedPage];
-    var userCount = this.props.userCount;
     var pages = this.getPageNumbers(userCount);
 
     var paginationList = pages.map(page => {
       return (
-        <li><a href="#" key={page} onClick={this.handlePageClick.bind(null, page)}>{page}</a></li>
+        <li>
+          <a href="#" key={page} onClick={this.handlePageClick.bind(null, page)}>{page}</a>
+        </li>
       );
     });
+
     var usersList;
     if (usersByPage) {
       usersList = Object.values(usersByPage.ids).map((id, i) => {
